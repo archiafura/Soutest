@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{% block title %}Paniermalin{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <script type="text/javascript" src={{ asset('build/app.js') }}></script>
+        <link rel ="stylesheet" type="text/css" href="{{ asset("build/app.css") }}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+
+
+
+
+{% block header_navigation_links %}
+
+    <div >
+        <img src="/img/logo11-final.png" id="logoz" />
+    </div>
+
+    <div>
+    <h1 id="titlinscript" class="text-center">Bienvenue sur Panier malin !</h1>
+    <div>
+
+
+
+        {% block body %}
+
+            <div id="logform">
+
+    {% if is_granted("ROLE_USER") %}
+
+        <li>
+
+            <a href="{{ path('user') }}">
+
+                <i class="fa fa-lock" aria-hidden="true"></i> {{ 'Accueil'|trans }}
+
+            </a>
+
+        </li>
+
+    {% endif %}
+
+    {% if is_granted("ROLE_PRO") %}
+
+        <li>
+
+            <a href="{{ path('pro') }}">
+
+                <i class="fa fa-lock" aria-hidden="true"></i> {{ 'Accueil'|trans }}
+
+            </a>
+
+        </li>
+
+    {% endif %}
+
+
+{% endblock %}
+    {% if app.user %}
+
+        <li>
+
+            <a href="{{ path('security_logout') }}">
+
+                <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'Déconnexion'|trans }}
+
+            </a>
+
+        </li>
+
+    {% endif %}
+            </div>
+        {% endblock %}
+
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+{% endblock %}
+</body>
+</html>
